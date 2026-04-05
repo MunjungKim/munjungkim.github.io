@@ -234,7 +234,8 @@
             margin-bottom: 0;
         }
 
-        .project-card:hover .project-image {
+        .project-card:hover .project-image,
+        .project-card.touched .project-image {
             max-height: 600px;
             opacity: 1;
             margin-bottom: 1.5rem;
@@ -618,6 +619,13 @@
                 btn.innerHTML = 'Next →';
             }
         }
+
+        // Mobile touch for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('touched');
+            });
+        });
     </script>
 </body>
 </html>
