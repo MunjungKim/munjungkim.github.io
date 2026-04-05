@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Munjung Kim</title>
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- Google Fonts - Serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/academicons.min.css"/>
+    <style>
+        :root {
+            --bg-pink: #FDF0F0;
+            --coral-red: #E63946;
+            --dark-text: #2D2D2D;
+            --light-text: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-pink);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 400;
+            color: var(--coral-red);
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 2rem;
+        }
+
+        .hero-nickname {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--coral-red);
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            white-space: nowrap;
+        }
+
+        /* Navigation Pills */
+        .nav-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .nav-pill {
+            padding: 0.75rem 1.75rem;
+            border: 1.5px solid var(--coral-red);
+            border-radius: 50px;
+            color: var(--coral-red);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .nav-pill:hover {
+            background-color: var(--coral-red);
+            color: white;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border: 1.5px solid var(--coral-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--coral-red);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background-color: var(--coral-red);
+            color: white;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--coral-red);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Content Sections */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--coral-red);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 280px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--coral-red);
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--light-text);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .keyword {
+            padding: 0.5rem 1rem;
+            background-color: rgba(230, 57, 70, 0.1);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--coral-red);
+        }
+
+        /* Projects/Papers Section */
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.4s ease;
+            margin-bottom: 0;
+        }
+
+        .project-card:hover .project-image {
+            max-height: 600px;
+            opacity: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .project-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--light-text);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            color: var(--coral-red);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .project-link:hover {
+            text-decoration: underline;
+        }
+
+        .hover-hint {
+            font-size: 0.75rem;
+            color: var(--coral-red);
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        .project-card:hover .hover-hint {
+            display: none;
+        }
+
+        /* News Section */
+        .news-page {
+            display: none;
+        }
+
+        .news-page.active {
+            display: block;
+        }
+
+        .news-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(230, 57, 70, 0.2);
+        }
+
+        .news-date {
+            font-family: 'Playfair Display', serif;
+            color: var(--coral-red);
+            font-size: 0.9rem;
+            min-width: 120px;
+        }
+
+        .news-text {
+            color: var(--light-text);
+        }
+
+        .news-nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .news-nav {
+            background: none;
+            color: var(--coral-red);
+            border: 1.5px solid var(--coral-red);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .news-nav:hover {
+            background: var(--coral-red);
+            color: white;
+        }
+
+        /* Education & Experience */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid rgba(230, 57, 70, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--coral-red);
+            border-radius: 50%;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark-text);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-subtitle {
+            color: var(--coral-red);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--light-text);
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin: 0 auto;
+            }
+
+            .nav-pills {
+                gap: 0.75rem;
+            }
+
+            .nav-pill {
+                padding: 0.6rem 1.25rem;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="hero-name">MUNJUNG</h1>
+        <p class="hero-subtitle">
+            Applying and developing AI to understand how science and technology evolve.<br>
+            PhD Candidate @ UVA
+        </p>
+
+        <nav class="nav-pills">
+            <a href="#about" class="nav-pill">About</a>
+            <a href="#projects" class="nav-pill">Projects</a>
+            <a href="#news" class="nav-pill">News</a>
+            <a href="#education" class="nav-pill">Education</a>
+            <a href="https://welcome-mj-blog.netlify.app" class="nav-pill" target="_blank">Blog</a>
+        </nav>
+
+        <div class="social-icons">
+            <a class="social-icon" href="https://www.linkedin.com/in/snetsmj/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a class="social-icon" href="https://github.com/MunjungKim" target="_blank"><i class="fab fa-github"></i></a>
+            <a class="social-icon" href="https://scholar.google.com/citations?user=gMrsCCoAAAAJ&hl=en&oi=ao" target="_blank"><i class="ai ai-google-scholar"></i></a>
+            <a class="social-icon" href="https://bsky.app/profile/mj-kim.bsky.social" target="_blank"><i class="fab fa-bluesky"></i></a>
+            <a class="social-icon" href="files/MunjungKim_CV.pdf" target="_blank"><i class="fas fa-file-alt"></i></a>
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About</h2>
+        <div class="about-content">
+            <img src="assets/img/IMG_4969 2.jpg" alt="Munjung Kim" class="profile-image" />
+            <div class="about-text">
+                <p>
+                    Hi! I'm MJ (Munjung Kim), a PhD candidate in Data Science at University of Virginia,
+                    advised by <a href="https://yyahn.com/about/" style="color: var(--coral-red);">Professor Ahn</a>.
+                </p>
+                <p>
+                    My research focuses on using and developing advanced AI and machine learning
+                    techniques to understand innovation in science and technology. These days,
+                    I'm also interested in exploring how large language models can be enhanced
+                    and understood through the lens of collective intelligence.
+                </p>
+                <p>
+                    Before joining the PhD program, I completed my undergraduate studies in Physics
+                    at Pohang University of Science and Technology (POSTECH) in Korea.
+                </p>
+                <div class="keywords">
+                    <span class="keyword">Machine Learning</span>
+                    <span class="keyword">Large Language Models</span>
+                    <span class="keyword">Science of Science</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <h2 class="section-title">Projects & Papers</h2>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="assets/img/Method_Schematics_03242025.png" alt="Murmuration of Scientists" />
+            </div>
+            <h3 class="project-title">The Murmuration of Scientists</h3>
+            <p class="project-desc">
+                Scientists shift their research interests—or "move" the space of knowledge—sparking new ideas and novel methodologies.
+                Drawing inspiration from the boids model of collective animal behaviors, we characterize individual research movements
+                using simple rules: alignment, cohesion, and separation.
+            </p>
+            <p class="hover-hint">↑ Hover to see figure</p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="assets/img/figure2_zscores_vs4.png" alt="Disruptive AI" />
+            </div>
+            <h3 class="project-title">The Potential Impact of Disruptive AI Innovations on U.S. Occupations</h3>
+            <p class="project-desc">
+                We calculate the disruption index of 3,237 U.S. AI patents (2015-2022) and link them to job tasks
+                to distinguish between "consolidating" AI innovations that reinforce existing structures and
+                "disruptive" AI innovations that alter them.
+            </p>
+            <a href="https://arxiv.org/abs/2507.11403" class="project-link" target="_blank">Read Paper →</a>
+            <p class="hover-hint">↑ Hover to see figure</p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="assets/img/Figure2_Schematics_Apr_25.png" alt="Quantifying Disruptiveness" />
+            </div>
+            <h3 class="project-title">Quantifying Disruptiveness using Neural Embedding Method</h3>
+            <p class="project-desc">
+                We propose a new, continuous measure of disruptiveness based on a neural embedding framework
+                that better distinguishes disruptive works, such as Nobel Prize-winning papers, from others.
+            </p>
+            <a href="https://www.science.org/doi/10.1126/sciadv.adx3420" class="project-link" target="_blank">Read Paper →</a>
+            <a href="https://munjungkim.github.io/embedding-disruptiveness-blog/" class="project-link" target="_blank" style="margin-left: 1rem;">Blog →</a>
+            <p class="hover-hint">↑ Hover to see figure</p>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image">
+                <img src="assets/img/project1.png" alt="Topic Diversity" />
+            </div>
+            <h3 class="project-title">Quantifying Topic Diversity and Disparity</h3>
+            <p class="project-desc">
+                Using neural embedding methods, we show that topic disparity is negatively associated with citation count,
+                indicating that less conventional research tends to receive fewer citations than conventional research.
+            </p>
+            <a href="https://dl.acm.org/doi/pdf/10.1145/3487553.3524655" class="project-link" target="_blank">Read Paper →</a>
+            <p class="hover-hint">↑ Hover to see figure</p>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section" id="news">
+        <h2 class="section-title">News</h2>
+
+        <div class="news-page active" id="news-page-1">
+            <div class="news-item">
+                <span class="news-date">Apr 2026</span>
+                <span class="news-text">🎉 Paper published in <a href="https://www.science.org/doi/10.1126/sciadv.adx3420" target="_blank" style="color: var(--coral-red);">Science Advances</a>.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Aug 2025</span>
+                <span class="news-text">Transferred to University of Virginia.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Jan 2025</span>
+                <span class="news-text">Delivered an invited talk at SNU and KISTI.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Dec 2024</span>
+                <span class="news-text">Delivered an invited talk at KDI School and KAIST STP.</span>
+            </div>
+        </div>
+
+        <div class="news-page" id="news-page-2">
+            <div class="news-item">
+                <span class="news-date">Jun – Aug 2024</span>
+                <span class="news-text">Completed an internship at Nokia Bell Labs.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Jul 2023</span>
+                <span class="news-text">Gave a poster presentation at IC2S2.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Jul 2023</span>
+                <span class="news-text">Gave an oral presentation at NetSci 2023.</span>
+            </div>
+            <div class="news-item">
+                <span class="news-date">Jun 2023</span>
+                <span class="news-text">Joined Santa Fe Institute Complex Systems Summer School.</span>
+            </div>
+        </div>
+
+        <div class="news-nav-container">
+            <button class="news-nav" onclick="toggleNewsPage()">Next →</button>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">University of Virginia</h3>
+            <p class="timeline-subtitle">Ph.D. in Data Science</p>
+            <p class="timeline-date">August 2025 – Present</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Indiana University</h3>
+            <p class="timeline-subtitle">Ph.D. in Informatics (transferred with advisor)</p>
+            <p class="timeline-date">August 2022 – July 2025</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3 class="timeline-title">Pohang University of Science and Technology</h3>
+            <p class="timeline-subtitle">B.S. in Physics</p>
+            <p class="timeline-date">Feb 2017 – Dec 2021</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Munjung Kim · <a href="mailto:qns8tc@virginia.edu" style="color: var(--coral-red);">qns8tc@virginia.edu</a></p>
+    </footer>
+
+    <!-- Smooth Scroll & News Carousel -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function toggleNewsPage() {
+            const page1 = document.getElementById('news-page-1');
+            const page2 = document.getElementById('news-page-2');
+            const btn = document.querySelector('.news-nav');
+
+            if (page1.classList.contains('active')) {
+                page1.classList.remove('active');
+                page2.classList.add('active');
+                btn.innerHTML = '← Previous';
+            } else {
+                page2.classList.remove('active');
+                page1.classList.add('active');
+                btn.innerHTML = 'Next →';
+            }
+        }
+    </script>
+</body>
+</html>
