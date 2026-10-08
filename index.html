@@ -224,34 +224,84 @@
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-2px);
+        }
+
+        .project-toggle {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            width: 100%;
+            background: none;
+            border: 0;
+            padding: 0;
+            margin: 0 0 1rem;
+            text-align: left;
+            cursor: pointer;
+            color: inherit;
+            font: inherit;
+        }
+
+        .project-toggle:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+            border-radius: 6px;
+        }
+
+        .project-title {
+            transition: color 0.2s ease;
+        }
+
+        .project-toggle:hover .project-title,
+        .project-toggle:focus-visible .project-title {
+            color: var(--accent);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 5px;
+        }
+
+        .project-chevron {
+            flex-shrink: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--accent);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.2s ease;
+        }
+
+        .project-toggle:hover .project-chevron,
+        .project-toggle:focus-visible .project-chevron,
+        .project-card.is-open .project-chevron {
+            opacity: 1;
+        }
+
+        .project-card.is-open .project-chevron {
+            transform: rotate(180deg);
         }
 
         .project-image {
             overflow: hidden;
             max-height: 0;
             opacity: 0;
-            transition: all 0.4s ease;
+            transition: max-height 0.4s ease, opacity 0.4s ease, margin-bottom 0.4s ease;
             margin-bottom: 0;
         }
 
-        .project-card:hover .project-image {
-            max-height: 600px;
+        .project-card.is-open .project-image {
+            max-height: 1200px;
             opacity: 1;
             margin-bottom: 1.5rem;
         }
 
-        @media (max-width: 768px) {
-            .project-image {
-                max-height: none;
+        /* Touch devices have no hover, so keep the affordance visible */
+        @media (hover: none) {
+            .project-chevron {
                 opacity: 1;
-                margin-bottom: 1.5rem;
             }
+        }
 
-            .hover-hint {
-                display: none;
-            }
-
+        @media (max-width: 768px) {
             .scroll-indicator {
                 display: none;
             }
@@ -268,7 +318,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: var(--text);
-            margin-bottom: 1rem;
+            margin: 0;
         }
 
         .project-desc {
@@ -286,17 +336,6 @@
 
         .project-link:hover {
             text-decoration: underline;
-        }
-
-        .hover-hint {
-            font-size: 0.75rem;
-            color: var(--accent);
-            opacity: 0.6;
-            margin-top: 0.5rem;
-        }
-
-        .project-card:hover .hover-hint {
-            display: none;
         }
 
         /* News Section */
@@ -530,57 +569,65 @@
         <h2 class="section-title">Projects <span style="font-family: 'Inter', sans-serif; font-weight: 300;">&</span> Papers</h2>
 
         <div class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false">
+                <h3 class="project-title">The Murmuration of Scientists</h3>
+                <span class="project-chevron" aria-hidden="true">▾</span>
+            </button>
             <div class="project-image">
                 <img src="assets/img/Method_Schematics_03242025.png" alt="Murmuration of Scientists" />
             </div>
-            <h3 class="project-title">The Murmuration of Scientists</h3>
             <p class="project-desc">
                 Scientists shift their research interests—or "move" the space of knowledge—sparking new ideas and novel methodologies.
                 Drawing inspiration from the boids model of collective animal behaviors, we characterize individual research movements
                 using simple rules: alignment, cohesion, and separation.
             </p>
-            <p class="hover-hint">↑ Hover to see figure</p>
         </div>
 
         <div class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false">
+                <h3 class="project-title">The Potential Impact of Disruptive AI Innovations on U.S. Occupations</h3>
+                <span class="project-chevron" aria-hidden="true">▾</span>
+            </button>
             <div class="project-image">
                 <img src="assets/img/figure2_zscores_vs4.png" alt="Disruptive AI" />
             </div>
-            <h3 class="project-title">The Potential Impact of Disruptive AI Innovations on U.S. Occupations</h3>
             <p class="project-desc">
                 We calculate the disruption index of 3,237 U.S. AI patents (2015-2022) and link them to job tasks
                 to distinguish between "consolidating" AI innovations that reinforce existing structures and
                 "disruptive" AI innovations that alter them.
             </p>
             <a href="https://arxiv.org/abs/2507.11403" class="project-link" target="_blank">Read Paper →</a>
-            <p class="hover-hint">↑ Hover to see figure</p>
         </div>
 
         <div class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false">
+                <h3 class="project-title">Quantifying Disruptiveness using Neural Embedding Method</h3>
+                <span class="project-chevron" aria-hidden="true">▾</span>
+            </button>
             <div class="project-image">
                 <img src="assets/img/Figure2_Schematics_Apr_25.png" alt="Quantifying Disruptiveness" />
             </div>
-            <h3 class="project-title">Quantifying Disruptiveness using Neural Embedding Method</h3>
             <p class="project-desc">
                 We propose a new, continuous measure of disruptiveness based on a neural embedding framework
                 that better distinguishes disruptive works, such as Nobel Prize-winning papers, from others.
             </p>
             <a href="https://www.science.org/doi/10.1126/sciadv.adx3420" class="project-link" target="_blank">Read Paper →</a>
             <a href="https://munjungkim.github.io/embedding-disruptiveness-blog/" class="project-link" target="_blank" style="margin-left: 1rem;">Blog →</a>
-            <p class="hover-hint">↑ Hover to see figure</p>
         </div>
 
         <div class="project-card">
+            <button class="project-toggle" type="button" aria-expanded="false">
+                <h3 class="project-title">Quantifying Topic Diversity and Disparity</h3>
+                <span class="project-chevron" aria-hidden="true">▾</span>
+            </button>
             <div class="project-image">
                 <img src="assets/img/project1.png" alt="Topic Diversity" />
             </div>
-            <h3 class="project-title">Quantifying Topic Diversity and Disparity</h3>
             <p class="project-desc">
                 Using neural embedding methods, we show that topic disparity is negatively associated with citation count,
                 indicating that less conventional research tends to receive fewer citations than conventional research.
             </p>
             <a href="https://dl.acm.org/doi/pdf/10.1145/3487553.3524655" class="project-link" target="_blank">Read Paper →</a>
-            <p class="hover-hint">↑ Hover to see figure</p>
         </div>
     </section>
 
@@ -683,6 +730,14 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+
+        document.querySelectorAll('.project-toggle').forEach(toggle => {
+            const card = toggle.closest('.project-card');
+            toggle.addEventListener('click', () => {
+                const isOpen = card.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             });
         });
 
